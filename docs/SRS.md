@@ -1,20 +1,35 @@
 ﻿# Software Requirements Specification (SRS)
-## Project: [Insert the Parent System Name, e.g., Hospital ERP System]
-## Module/Subsystem: [Insert Your Module Name, e.g., Laboratory Management, Clinical System, OR "Master Integration System" if you are the integration team]
+## Project: Medichain - Integrated Hospital Management System (HMS)
+## Module/Subsystem: Sample Tracking Module (LAB-TRK)
 **Version:** 1.0  
-**Date:** [YYYY-MM-DD]
+**Date:** 2026-05-12
 
 ---
 
 ## 1. Introduction
 ### 1.1 Purpose
-* **Instruction:** Describe the specific purpose of this document. Who is the intended audience? If you are a subsystem team, explain how this document defines your specific module. If you are the Integration Team (Team Leaders), explain how this document governs the entire system.
-
+The purpose of this document is to define the functional and non-functional requirements for the Sample Tracking Module (LAB-TRK). This module is a core component of the Medichain Hospital Management System, specifically designed to monitor the lifecycle of medical samples.
+​The intended audience for this document includes:
+​.The Development Team: To guide the implementation of the backend logic (Node.js/PostgreSQL) and frontend interfaces.
+​.The Integration Team (Team Leaders): To ensure seamless communication between LAB-TRK and other modules like Medical Approval (MED-APP).
+​.Lab Administrators & Technicians: To verify that the system accurately reflects the physical laboratory workflow and security protocols.
 ### 1.2 Scope
-* **Instruction:** Define the boundaries of your system. 
-  * What are the core goals and benefits?
-  * **Crucial:** Explicitly list what your system *will* do and what it *will NOT* do to prevent overlap with other teams.
-
+* **Instruction:** The Sample Tracking Module (LAB-TRK) is a specialized subsystem within the Medichain platform designed to automate and monitor the internal movement of medical samples. The system ensures that every sample is accounted for from the moment of receipt until the final locking of the record.
+  * Traceability: Providing a real-time log of the sample’s location and current processing stage (Reception, Analysis, Review).
+​Quality Control: Enforcing mandatory documentation of previous stages before allowing transition to a new phase.
+​Performance Monitoring: Automatically calculating the time spent in each stage and alerting administrators to any delays.
+​Data Integrity: Securing the sample record once the review is complete to prevent unauthorized modifications.
+  * **Crucial:** What the system WILL do:
+​.Log Sample Transitions: Record every movement between laboratory stages.
+​.Enforce Sequential Workflow: Prevent users from skipping stages or moving forward without proper documentation.
+​.Automated Time Tracking: Start timers automatically upon entry into a new stage.
+​.Alert Generation: Issue notifications if a sample exceeds the predefined time limit for a specific stage.
+​.Record Locking: Permanently lock the sample data after the final review to ensure audit trail security.
+​What the system WILL NOT do:
+​.Financial Transactions: The system will not handle payments or pricing, as this is the responsibility of the Revenue & Billing (REV-BIL) module.
+​.External Referrals: This module does not manage the transfer of samples to external labs; that is handled by the External Referrals (REF-TRK) module.
+​.Chemical Inventory: The system will not track the levels of chemical reagents or stock, which is managed by the Inventory Validation (INV-VAL) module.
+​.Clinical Diagnosis: The system does not provide automated medical diagnoses; it only tracks the process of reaching those results.
 ### 1.3 Definitions, Acronyms, and Abbreviations
 * **Instruction:** Provide a table defining all technical terms, acronyms, or domain-specific language (e.g., medical terms, API, ERP) used in this document so all teams share a common understanding.
 
@@ -24,8 +39,10 @@
   * Links to shared architectural documents or API contracts agreed upon with the Integration Team.
 
 ### 1.5 Overview
-* **Instruction:** Briefly explain how the rest of this SRS document is organized.
-
+* **Instruction:** This SRS document is organized into three main sections to provide a clear understanding of the LAB-TRK module:
+​Section 1 (Introduction): Provides an overview of the module’s purpose, scope, and technical definitions.
+​Section 2 (Overall Description): Describes the general factors that affect the product, including user characteristics, operating environment, and design constraints.
+​Section 3 (Specific Requirements): Detailed functional and non-functional requirements, including the sample lifecycle logic, automated time-tracking, and the record-locking mechanism.
 ---
 
 ## 2. Overall Description
