@@ -25,10 +25,11 @@ The purpose of this document is to define the functional and non-functional requ
 ​.Automated Time Tracking: Start timers automatically upon entry into a new stage.
 ​.Alert Generation: Issue notifications if a sample exceeds the predefined time limit for a specific stage.
 ​.Record Locking: Permanently lock the sample data after the final review to ensure audit trail security.
+​.Inter-Module Communication: Fetch material availability data and payment status from external modules to validate workflow transitions.
 ​What the system WILL NOT do:
-​.Financial Transactions: The system will not handle payments or pricing, as this is the responsibility of the Revenue & Billing (REV-BIL) module.
+​​.Financial Transactions: The system will only verify payment status from the Billing module but will not process payments or generate invoices.
 ​.External Referrals: This module does not manage the transfer of samples to external labs; that is handled by the External Referrals (REF-TRK) module.
-​.Chemical Inventory: The system will not track the levels of chemical reagents or stock, which is managed by the Inventory Validation (INV-VAL) module.
+​​.Chemical Inventory: The system will query the Inventory module for material availability but will not manage stock levels or reagent procurement.
 ​.Clinical Diagnosis: The system does not provide automated medical diagnoses; it only tracks the process of reaching those results.
 ### 1.3 Definitions, Acronyms, and Abbreviations
 * **Instruction:** Provide a table defining all technical terms, acronyms, or domain-specific language (e.g., medical terms, API, ERP) used in this document so all teams share a common understanding.
@@ -42,13 +43,13 @@ The purpose of this document is to define the functional and non-functional requ
 * **Instruction:** This SRS document is organized into three main sections to provide a clear understanding of the LAB-TRK module:
 ​Section 1 (Introduction): Provides an overview of the module’s purpose, scope, and technical definitions.
 ​Section 2 (Overall Description): Describes the general factors that affect the product, including user characteristics, operating environment, and design constraints.
-​Section 3 (Specific Requirements): Detailed functional and non-functional requirements, including the sample lifecycle logic, automated time-tracking, and the record-locking mechanism.
+​Section 3 (Specific Requirements): Detailed functional and non-functional requirements, including the sample logic, automated time-tracking inter-module integration, and the record-locking mechanism.
 ---
 
 ## 2. Overall Description
 ### 2.1 Product Perspective
   * **For Subsystem Teams:** The LAB-TRK module is a core component of the larger Medichain ecosystem. It functions as a specialized unit that interacts with the master database to ensure synchronization of patient records and test results, while exchanging data with other modules to maintain a seamless clinical workflow
-  * **For the Integration Team:** The high-level block diagram (located in the project folder) illustrates the interconnections between LAB-TRK and other subsystems, showing all integration points and data flow paths.
+  * **For the Integration Team:** The high-level block diagram (located in the project folder) illustrates the interconnections between LAB-TRK and other subsystems, showing all integration points and data flow paths ,The module also relies on real-time data exchange with the Billing and Inventory subsystems to validate workflow transitions.
 *   **2.1.1 System Interfaces:** The module exposes a RESTful API that enables other teams (such as Module 7) to access specific functionalities:
 Status Notification: An endpoint to inform integrated modules when a sample is "Ready for Approval".
 Data Exchange: A structured JSON output containing raw results, reference ranges, and the lab technician's information.
@@ -125,30 +126,38 @@ Data Exchange: A structured JSON output containing raw results, reference ranges
          *Acceptance Criteria:*The system must receive and validate the unique alphanumeric ID from Module 1.
           The system must record the reception timestamp.
 ​
-        * *GitHub Issue:* [Link to Issue, e.g., #12]
+        * *GitHub Issue:*  *#2*
     *   **Story 2:** As a Lab Technician, I want to update the sample status in real-time so that the integration team can see the current processing stage.
-         *GitHub Issue:* [Link to Issue, e.g., #13]
+         *GitHub Issue:*  *#3*
           
        **Story 3:** As a Lab Technician, I want to scan a sample's barcode to instantly retrieve its data and current status.
+        *GitHub Issue:*  *#3*
 #### 3.2.2 Feature:Secure Results Management and API Integration
 ​Description: Provides a secure way to input raw test results and reference ranges, exposing them to external modules through a protected API without generating reports.
 ​Priority: High.
 ​User Stories: 
 ​Story 1: As a Lab Technician, I want the system to lock a record while I am editing results to prevent data conflicts from other users.
+ *GitHub Issue:*  *#4*
 ​Story 2: As an Integration Developer (Module 7), I want to fetch structured JSON data for "Ready for Approval" samples to complete the clinical diagnostic cycle.
+ *GitHub Issue:*  *#3*
 ​Story 3 : As a Lab Technician, I want to verify material availability from Module 3 before starting a test to ensure the analysis can be completed without interruption.
+ *GitHub Issue:*  *#3*
 ​Story 4 : As a System Administrator, I want to block result approval if the payment status from Module 5 is "Unpaid" to ensure financial compliance.
+ *GitHub Issue:*  *#3*
 #### 3.2.3 Feature: Laboratory Data Integrity
 ​Description: Ensuring that raw results and reference ranges are stored accurately and locked during editing.
 ​Priority: High.
 ​User Stories: 
 ​Story 1: As a Lab Technician, I want the system to lock a record while I am editing it so that no other technician can overwrite my data.
+ *GitHub Issue:*  *#4*
 ​Story 2: As a System Administrator, I want to track the exact time each result was entered for auditing purposes.
+ *GitHub Issue:*  *#5*
 #### 3.2.4 Feature : Automated Audit Logging
 ​Description: Automatically records every action taken on a sample, including timestamps and the identity of the technician.
 ​Priority: Medium.
 ​User Stories: 
 ​Story 1: As a System Administrator, I want to view the automated time-tracking logs for any sample to audit the laboratory's performance and efficiency.
+ *GitHub Issue:*  *#5*
 ### 3.3 Performance Requirements
 ​Response Time: The system shall respond to API requests for sample data within less than 2 seconds under normal load.
 ​Concurrency: The module must support at least 20 concurrent lab technicians updating sample results simultaneously without performance degradation.
