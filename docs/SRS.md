@@ -116,48 +116,79 @@ Data Exchange: A structured JSON output containing raw results, reference ranges
   "timestamp": "ISO8601_DateTime"
 }
 
-### 3.2 System Features & User Stories
+3.2 System Features & User Stories
+​3.2.1 Feature: Sample Intake and Tracking
+Description: This feature enables the laboratory to receive new samples and track their progress through various internal stages using precise time-tracking and documentation.
+​Story 1: Sample Registration
+​As a Lab Technician,
+​I want to register a new sample entry,
+​So that its tracking lifecycle can begin in the system.
+​Acceptance Criteria: The system must receive and validate the unique alphanumeric ID from Module 1, record the reception timestamp, and automatically trigger the Record Receipt Time workflow.
+​GitHub Issue: #2
+​Story 2: Real-Time Status Updates
+​As a Lab Technician,
+​I want to update the sample status in real-time,
+​So that the integration team can see the current processing stage.
+​Acceptance Criteria: When the technician updates the status, the system must automatically enforce Stage Documentation and Calculate Stage Time. If the calculated time exceeds predefined limits, the system triggers Issue Alerts.
+​GitHub Issue: #3
+​Story 3: Barcode Scanning
+​As a Lab Technician,
+​I want to scan a sample's barcode,
+​So that I can instantly retrieve its data and current status.
+​GitHub Issue: #3
+​3.2.2 Feature: Secure Results Management and API Integration
+Description: Provides a secure way to input raw test results and reference ranges, exposing them to external modules through a protected API while maintaining local data integrity.
+​Story 1: Results Data Entry
+​As a Lab Technician,
+​I want to input raw laboratory test results and reference ranges into the system,
+​So that the medical data is securely stored.
+​Acceptance Criteria: The system must automatically enforce Record Locking while the technician is editing or entering results to prevent data conflicts from other users.
+​GitHub Issue: #4
+​Story 2: Data Exchange for External Approval
+​As an Integration Developer (Module 7),
+​I want to fetch structured JSON data for "Ready for Approval" samples,
+​So that I can complete the clinical diagnostic cycle.
+​GitHub Issue: #3
+​Story 3: Material Availability Verification
+​As a Lab Technician,
+​I want to verify material availability from Module 3 before starting a test,
+​So that I can ensure the analysis can be completed without interruption.
+​GitHub Issue: #3
+​Story 4: Financial Compliance Verification
+​As a System Administrator,
+​I want to block result approval if the payment status from Module 5 is "Unpaid",
+​So that financial compliance is ensured before record locking.
+​GitHub Issue: #3
+​3.2.3 Feature: Laboratory Data Integrity
+Description: Ensuring that raw results and reference ranges are stored accurately and locked during editing to maintain strict consistency.
+​Story 1: Record Locking Management
+​As a Lab Technician,
+​I want the system to enforce strict Record Locking during results editing,
+​So that no other technician can overwrite or modify my data concurrently.
+​GitHub Issue: #4
+​Story 2: Result Entry Timestamping
+​As a System Administrator,
+​I want the system to track and log the exact time each result was entered,
+​So that data precision is maintained for auditing purposes.
+​GitHub Issue: #5
+​3.2.4 Feature: Laboratory Performance Auditing and Alerts
+Description: Provides automated audit logging and administrative tools to monitor laboratory efficiency, track processing delays, and manage alerts.
+​Story 1: View Audit Logs
+​As a System Administrator,
+​I want to view the automated time-tracking logs for any sample,
+​So that I can audit the laboratory's performance and efficiency.
+​GitHub Issue: #5
+​Story 2: Delay Monitoring and Accountability
+​As a System Administrator,
+​I want to monitor processing delays within the laboratory stages,
+​So that I can Identify the Responsible Stage for any operational bottlenecks.
+​GitHub Issue: #5
+​Story 3: Alert Management
+​As a System Administrator,
+​I want to manage system notification settings,
+​So that I can configure parameters for time limits and laboratory delay alert triggers.
+​GitHub Issue: #3
 
-#### 3.2.1 Feature: Sample Intake and Tracking
-   **Description:** This feature enables the laboratory to receive new samples and track their progress through various internal stages.
-  **Priority:** High.
-  **User Stories:**
-      **Story 1:** As a Lab Technician, I want to register a new sample entry so that it can start tracking
-         *Acceptance Criteria:*The system must receive and validate the unique alphanumeric ID from Module 1.
-          The system must record the reception timestamp.
-​
-        * *GitHub Issue:*  *#2*
-    *   **Story 2:** As a Lab Technician, I want to update the sample status in real-time so that the integration team can see the current processing stage.
-         *GitHub Issue:*  *#3*
-          
-       **Story 3:** As a Lab Technician, I want to scan a sample's barcode to instantly retrieve its data and current status.
-        *GitHub Issue:*  *#3*
-#### 3.2.2 Feature:Secure Results Management and API Integration
-​Description: Provides a secure way to input raw test results and reference ranges, exposing them to external modules through a protected API without generating reports.
-​Priority: High.
-​User Stories: 
-​Story 1: As a Lab Technician, I want the system to lock a record while I am editing results to prevent data conflicts from other users.
- *GitHub Issue:*  *#4*
-​Story 2: As an Integration Developer (Module 7), I want to fetch structured JSON data for "Ready for Approval" samples to complete the clinical diagnostic cycle.
- *GitHub Issue:*  *#3*
-​Story 3 : As a Lab Technician, I want to verify material availability from Module 3 before starting a test to ensure the analysis can be completed without interruption.
- *GitHub Issue:*  *#3*
-​Story 4 : As a System Administrator, I want to block result approval if the payment status from Module 5 is "Unpaid" to ensure financial compliance.
- *GitHub Issue:*  *#3*
-#### 3.2.3 Feature: Laboratory Data Integrity
-​Description: Ensuring that raw results and reference ranges are stored accurately and locked during editing.
-​Priority: High.
-​User Stories: 
-​Story 1: As a Lab Technician, I want the system to lock a record while I am editing it so that no other technician can overwrite my data.
- *GitHub Issue:*  *#4*
-​Story 2: As a System Administrator, I want to track the exact time each result was entered for auditing purposes.
- *GitHub Issue:*  *#5*
-#### 3.2.4 Feature : Automated Audit Logging
-​Description: Automatically records every action taken on a sample, including timestamps and the identity of the technician.
-​Priority: Medium.
-​User Stories: 
-​Story 1: As a System Administrator, I want to view the automated time-tracking logs for any sample to audit the laboratory's performance and efficiency.
- *GitHub Issue:*  *#5*
 ### 3.3 Performance Requirements
 ​Response Time: The system shall respond to API requests for sample data within less than 2 seconds under normal load.
 ​Concurrency: The module must support at least 20 concurrent lab technicians updating sample results simultaneously without performance degradation.
