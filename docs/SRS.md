@@ -118,7 +118,8 @@ Data Exchange: A structured JSON output containing raw results, reference ranges
 
 3.2 System Features & User Stories
 ​3.2.1 Feature: Sample Intake and Tracking
-Description: This feature enables the laboratory to receive new samples and track their progress through various internal stages using precise time-tracking and documentation.
+​Description: This feature enables the laboratory to receive new samples and track their progress through various internal stages using precise time-tracking and documentation.
+Priority: High.
 ​Story 1: Sample Registration
 ​As a Lab Technician,
 ​I want to register a new sample entry,
@@ -137,7 +138,8 @@ Description: This feature enables the laboratory to receive new samples and trac
 ​So that I can instantly retrieve its data and current status.
 ​GitHub Issue: #3
 ​3.2.2 Feature: Secure Results Management and API Integration
-Description: Provides a secure way to input raw test results and reference ranges, exposing them to external modules through a protected API while maintaining local data integrity.
+​Description: Provides a secure way to input raw test results and reference ranges, exposing them to external modules through a protected API while maintaining local data integrity.
+Priority: High.
 ​Story 1: Results Data Entry
 ​As a Lab Technician,
 ​I want to input raw laboratory test results and reference ranges into the system,
@@ -160,7 +162,8 @@ Description: Provides a secure way to input raw test results and reference range
 ​So that financial compliance is ensured before record locking.
 ​GitHub Issue: #3
 ​3.2.3 Feature: Laboratory Data Integrity
-Description: Ensuring that raw results and reference ranges are stored accurately and locked during editing to maintain strict consistency.
+​Description: Ensuring that raw results and reference ranges are stored accurately and locked during editing to maintain strict consistency.
+Priority: High.
 ​Story 1: Record Locking Management
 ​As a Lab Technician,
 ​I want the system to enforce strict Record Locking during results editing,
@@ -172,7 +175,8 @@ Description: Ensuring that raw results and reference ranges are stored accuratel
 ​So that data precision is maintained for auditing purposes.
 ​GitHub Issue: #5
 ​3.2.4 Feature: Laboratory Performance Auditing and Alerts
-Description: Provides automated audit logging and administrative tools to monitor laboratory efficiency, track processing delays, and manage alerts.
+​Description: Provides automated audit logging and administrative tools to monitor laboratory efficiency, track processing delays, and manage alerts.
+Priority: Medium.
 ​Story 1: View Audit Logs
 ​As a System Administrator,
 ​I want to view the automated time-tracking logs for any sample,
