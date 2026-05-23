@@ -134,7 +134,7 @@ GET/api/v1/billing/check-status/:sampleId:Called by the "Approval & Result Locki
     * **As a** Lab Technician,
     * **I want to** update the sample status in real-time,
     * **So that** the integration team can see the current processing stage.
-    * **GitHub Issue:** #3
+    * **GitHub Issue:** #7
 
 * **Story 3: Barcode Scanning**
     * **As a** Lab Technician,
@@ -150,13 +150,13 @@ GET/api/v1/billing/check-status/:sampleId:Called by the "Approval & Result Locki
     * **As a** Lab Technician,
     * **I want to** input raw laboratory test results and reference ranges into the system,
     * **So that** the medical data is securely stored.
-    * **GitHub Issue:** #4
+    * **GitHub Issue:** #8
 
 * **Story 2: Data Exchange for External Approval**
     * **As an** ​Medical Approver (or Lab Doctor),
     * **I want to** I want to view and retrieve structured sample test results
     * **So that**  I can securely review the diagnosis, verify details, and finalize the medical approval
-    * **GitHub Issue:** #6
+    * **GitHub Issue:** #9
 
 * **Story 3: Material Availability Verification**
     * **As a** Lab Technician,
@@ -213,7 +213,7 @@ Priority: Medium.
     * Acceptance Criteria:
         * The system must trigger a visual alert or flag if the stage duration exceeds the predefined threshold.
         * The alert must explicitly tag the specific stage where the delay occurred.
-    * GitHub Issue: #5
+    * GitHub Issue: #10
 ### 3.3 Performance Requirements
 ​Response Time: The system shall respond to API requests for sample data within less than 2 seconds under normal load.
 ​Concurrency: The module must support at least 20 concurrent lab technicians updating sample results simultaneously without performance degradation.
