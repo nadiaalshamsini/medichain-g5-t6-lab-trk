@@ -155,10 +155,10 @@ GET/api/v1/billing/check-status/:sampleId:Called by the "Approval & Result Locki
     * **GitHub Issue:** #4
 
 * **Story 2: Data Exchange for External Approval**
-    * **As an** Integration Developer (Module 7),
-    * **I want to** fetch structured JSON data for "Ready for Approval" samples,
-    * **So that** I can complete the clinical diagnostic cycle.
-    * **GitHub Issue:** #3
+    * **As an** ​Medical Approver (or Lab Doctor),
+    * **I want to** I want to view and retrieve structured sample test results
+    * **So that**  I can securely review the diagnosis, verify details, and finalize the medical approval
+    * **GitHub Issue:** #6
 
 * **Story 3: Material Availability Verification**
     * **As a** Lab Technician,
