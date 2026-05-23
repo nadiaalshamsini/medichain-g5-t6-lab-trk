@@ -168,9 +168,10 @@ GET/api/v1/billing/check-status/:sampleId:Called by the "Approval & Result Locki
     * **GitHub Issue:** #3
 
 * **Story 4: Financial Compliance Verification**
-    * **As a** System Administrator,
-    * **I want to** block result approval if the payment status from Module 5 is "Unpaid",
-    * **So that** financial compliance is ensured before record locking.
+    * **As a**  Lab Financial Auditor, (Accountant)
+    * **I want to** ensure the system restricts test approvals for unpaid balances,
+    * **So that** no financial losses occur before the final release.
+se.
     * **GitHub Issue:** #3
 
 #### 3.2.3 Feature: Laboratory Data Integrity
@@ -188,30 +189,33 @@ GET/api/v1/billing/check-status/:sampleId:Called by the "Approval & Result Locki
     * **I want the system to** track and log the exact time each result was entered,
     * **So that** data precision is maintained for auditing purposes.
     * **GitHub Issue:** #5
+### 3.2.4 Feature: Laboratory Performance Auditing and Alerts
 
-#### 3.2.4 Feature: Laboratory Performance Auditing and Alerts
-**Description:** Provides automated audit logging and administrative tools to monitor laboratory efficiency, track processing delays, and manage alerts.
-**Priority:** Medium.
+*   Story 1: Sequential Stage Logging
+    *   As a Lab Technician,
+    *   I want to log each stage transition of a sample sequentially (Receipt, Analysis, Review),
+    *   So that the sample lifecycle is fully documented and no forward step can be taken without completing the previous one.
+    *   Acceptance Criteria: 
+        *   The system must validate and record the transition only if the preceding stage is completed.
+        *   Every logged transition must secure the technician's ID and an automatic timestamp.
+    *   GitHub Issue: #5
 
-* **Story 1: View Audit Logs**
-    * **As a** System Administrator,
-    * **I want to** view the automated time-tracking logs for any sample,
-    * **So that** I can audit the laboratory's performance and efficiency.
-    * **GitHub Issue:** #5
+*   Story 2: Processing Time Tracking
+    *   As a Lab Quality Supervisor,
+    *   I want to view the exact time spent on each processing stage for any sample,
+    *   So that I can monitor the efficiency of our laboratory workflow and audit processing speeds.
+    *   Acceptance Criteria:
+        *   The system must display the calculated elapsed time (in minutes) between consecutive stages.
+    *   GitHub Issue: #5
 
-* **Story 2: Delay Monitoring and Accountability**
-    * **As a** System Administrator,
-    * **I want to** monitor processing delays within the laboratory stages,
-    * **So that I can** Identify the Responsible Stage for any operational bottlenecks.
-    * **GitHub Issue:** #5
-
-* **Story 3: Alert Management**
-    * **As a** System Administrator,
-    * **I want to** manage system notification settings,
-    * **So that I can** configure parameters for time limits and laboratory delay alert triggers.
-    * **GitHub Issue:** #3
-
-
+*   Story 3: Delay Alerting & Bottleneck Identification
+    *   As a Lab Manager,
+    *   I want to receive immediate alerts when a sample exceeds its allowed time limit, alongside an identification of the exact stage causing the delay,
+    *   So that I can take instant corrective actions and hold the delayed department accountable.
+    *   Acceptance Criteria:
+        *   The system must trigger a visual alert if the stage duration exceeds the predefined SLA threshold.
+        *   The alert must explicitly tag the specific stage where the delay occurred.
+    *   GitHub Issue: #3
 ### 3.3 Performance Requirements
 ​Response Time: The system shall respond to API requests for sample data within less than 2 seconds under normal load.
 ​Concurrency: The module must support at least 20 concurrent lab technicians updating sample results simultaneously without performance degradation.
@@ -242,6 +246,6 @@ Glossary:
 ​Models: (You should include your Entity-Relationship Diagram (ERD) and Data Flow Diagrams (DFDs) here as instructed in the image).
 ### Appendix B: GitHub Traceability Checklist
 * **Instruction for Team Members:** Before submitting this SRS, ensure that:
-  * [ ] Every User Story in Section 3.2 has a corresponding GitHub Issue.
-  * [ ] Every GitHub Issue has an appropriate label (e.g., `enhancement`, `requirement`).
-  * [ ] Pull Requests reference the Issue IDs (e.g., `Closes #12`). 
+  * [ t] Every User Story in Section 3.2 has a corresponding GitHub Issue.
+  * [ t] Every GitHub Issue has an appropriate label (e.g., `enhancement`, `requirement`).
+  * [ t] Pull Requests reference the Issue IDs (e.g., `Closes #12`). 
