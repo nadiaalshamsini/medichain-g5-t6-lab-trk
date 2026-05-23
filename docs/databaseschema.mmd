@@ -1,0 +1,47 @@
+classDiagram
+
+    class sample {
+        +varchar(50) sample_id
+        +varchar(100) client_name
+        +varchar(100) analysis_type
+        +timestamp receipt_time
+    }
+
+    class stage {
+        +serial stage_id
+        +varchar(100) stage_name
+        +interval allowed_duration
+    }
+
+    class trackingentry {
+        +serial tracking_id
+        +varchar(50) sample_id
+        +int stage_id
+        +int user_id
+        +timestamp entry_time
+        +timestamp exit_time
+        +interval time_spent
+    }
+
+    class users {
+        +serial user_id
+        +varchar(100) username
+        +varchar(100) password
+        +varchar(50) role
+    }
+
+    class alert {
+        +serial alert_id
+        +int tracking_id
+        +varchar(50) sample_id
+        +interval delay_duration
+        +varchar(100) responsible
+    }
+
+
+    sample "1" --> "*" trackingentry : sample_id
+    stage "1" --> "*" trackingentry : stage_id
+    users "1" --> "*" trackingentry : user_id
+
+    trackingentry "0..1" --> "0..1" alert : tracking_id
+    sample "1" --> "*" alert : sample_id
