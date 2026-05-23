@@ -162,57 +162,58 @@ GET/api/v1/billing/check-status/:sampleId:Called by the "Approval & Result Locki
     * **As a** Lab Technician,
     * **I want to** verify material availability from Module 3 before starting a test,
     * **So that** I can ensure the analysis can be completed without interruption.
-    * **GitHub Issue:** #3
+    * **GitHub Issue:** #5
 
 * **Story 4: Financial Compliance Verification**
     * **As a**  Lab Financial Auditor, (Accountant)
     * **I want to** ensure the system restricts test approvals for unpaid balances,
     * **So that** no financial losses occur before the final release.
 se.
-    * **GitHub Issue:** #3
-
-#### 3.2.3 Feature: Laboratory Data Integrity
-**Description:** Ensuring that raw results and reference ranges are stored accurately and locked during editing to maintain strict consistency.
-**Priority:** High.
-
-* **Story 1: Record Locking Management**
-    * **As a** Lab Technician,
-    * **I want the system to** enforce strict Record Locking during results editing,
-    * **So that** no other technician can overwrite or modify my data concurrently.
-    * **GitHub Issue:** #4
-
-* **Story 2: Result Entry Timestamping**
-    * **As a** System Administrator,
-    * **I want the system to** track and log the exact time each result was entered,
-    * **So that** data precision is maintained for auditing purposes.
     * **GitHub Issue:** #5
+#### 3.2.3 Feature: Laboratory Data Integrity
+Description: Ensuring that raw results and validation sequences maintain strict consistency and architectural integrity.
+Priority: High.
+
+* Story 1: Sequential Stage Validation
+    * As a Lab Technician,
+    * I want the system to strictly enforce the correct sequence of stages,
+    * So that no results can be entered or modified out of order, preventing data corruption.
+    * GitHub Issue: #4
+
+* Story 2: Result Entry Timestamping
+    * As a Lab Technician,
+    * I want the system to automatically log the exact timestamp for each stage transition and result entry,
+    * So that data precision is maintained for auditing and laboratory performance tracking purposes.
+    * GitHub Issue: #5
 ### 3.2.4 Feature: Laboratory Performance Auditing and Alerts
+Description: Monitoring processing efficiency, auditing sample lifecycles, and triggering alerts for delayed stages to identify workflow bottlenecks.
+Priority: Medium.
 
-*   Story 1: Sequential Stage Logging
-    *   As a Lab Technician,
-    *   I want to log each stage transition of a sample sequentially (Receipt, Analysis, Review),
-    *   So that the sample lifecycle is fully documented and no forward step can be taken without completing the previous one.
-    *   Acceptance Criteria: 
-        *   The system must validate and record the transition only if the preceding stage is completed.
-        *   Every logged transition must secure the technician's ID and an automatic timestamp.
-    *   GitHub Issue: #5
+* Story 1: Sequential Stage Logging
+    * As a Lab Technician,
+    * I want to log each stage transition of a sample sequentially,
+    * So that the sample lifecycle is fully documented and no forward step can be taken without its previous validation.
+    * Acceptance Criteria:
+        * The system must validate and record the transition only if the preceding stage is strictly verified.
+        * Every logged transition must automatically secure the technician's ID and an automatic timestamp.
+    * GitHub Issue: #5
 
-*   Story 2: Processing Time Tracking
-    *   As a Lab Quality Supervisor,
-    *   I want to view the exact time spent on each processing stage for any sample,
-    *   So that I can monitor the efficiency of our laboratory workflow and audit processing speeds.
-    *   Acceptance Criteria:
-        *   The system must display the calculated elapsed time (in minutes) between consecutive stages.
-    *   GitHub Issue: #5
+* Story 2: Processing Time Tracking
+    * As a Lab Quality Supervisor,
+    * I want to view the exact time spent on each processing stage for any sample,
+    * So that I can monitor the efficiency of our laboratory workflow and audit processes.
+    * Acceptance Criteria:
+        * The system must display the calculated elapsed time (in minutes) between consecutive stages.
+    * GitHub Issue: #5
 
-*   Story 3: Delay Alerting & Bottleneck Identification
-    *   As a Lab Manager,
-    *   I want to receive immediate alerts when a sample exceeds its allowed time limit, alongside an identification of the exact stage causing the delay,
-    *   So that I can take instant corrective actions and hold the delayed department accountable.
-    *   Acceptance Criteria:
-        *   The system must trigger a visual alert if the stage duration exceeds the predefined SLA threshold.
-        *   The alert must explicitly tag the specific stage where the delay occurred.
-    *   GitHub Issue: #3
+* Story 3: Delay Alerting & Bottleneck Identification
+    * As a Lab Manager,
+    * I want to receive immediate alerts when a sample exceeds its allowed time limit, specifying the exact stage causing the delay,
+    * So that I can take instant corrective actions and hold the delayed department accountable.
+    * Acceptance Criteria:
+        * The system must trigger a visual alert or flag if the stage duration exceeds the predefined threshold.
+        * The alert must explicitly tag the specific stage where the delay occurred.
+    * GitHub Issue: #5
 ### 3.3 Performance Requirements
 ​Response Time: The system shall respond to API requests for sample data within less than 2 seconds under normal load.
 ​Concurrency: The module must support at least 20 concurrent lab technicians updating sample results simultaneously without performance degradation.
