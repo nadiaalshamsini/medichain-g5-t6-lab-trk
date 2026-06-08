@@ -1,6 +1,5 @@
 using AlertManagerLib;
 using Xunit;
-
 namespace AlertManagerTests;
 
 public class AlertManagerTests
