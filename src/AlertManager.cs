@@ -30,7 +30,5 @@ public class AlertManager
         }
         else
         {
-            return "غير محدد";
-        }
-    }
-}
+            return "غير محدد";}}}
+
